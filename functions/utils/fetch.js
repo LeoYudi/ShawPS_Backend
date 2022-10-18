@@ -1,7 +1,7 @@
 const functions = require('firebase-functions');
 const https = require('https');
 
-const apiToken = functions.config().joco_functions.github_token;
+const apiToken = functions.config().github.token;
 
 const api = async (method, url, body = undefined) => {
   return new Promise((resolve, reject) => {
