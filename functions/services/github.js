@@ -2,10 +2,10 @@ const { api } = require('../utils/fetch');
 
 const listUsers = async since => {
   try {
-    const { data } = await api('GET', `/users?per_page=10&since=${since}`);
+    const { data } = await api('GET', `/users?since=${since}`);
     const next = data[data.length - 1].id;
 
-    return { users: data, next };
+    return { users: data, next, prev: since ? since - 1 : 0 };
   } catch (error) {
     throw error;
   }
