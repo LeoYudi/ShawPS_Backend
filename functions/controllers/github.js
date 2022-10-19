@@ -1,10 +1,10 @@
 const githubApi = require('../services/github');
 
 const listUsers = async (req, res) => {
-  const { since } = req.query;
+  const { since, per_page } = req.query;
 
   try {
-    const response = await githubApi.listUsers(since);
+    const response = await githubApi.listUsers(since, per_page);
 
     return res.status(200).json(response);
 

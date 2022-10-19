@@ -1,8 +1,8 @@
 const { api } = require('../utils/fetch');
 
-const listUsers = async since => {
+const listUsers = async (since = 0, per_page = 15) => {
   try {
-    const { data } = await api('GET', `/users?since=${since}`);
+    const { data } = await api('GET', `/users?since=${since}&per_page=${per_page * 2}`);
     const next = data[data.length - 1].id;
 
     return { users: data, next, prev: since ? since - 1 : 0 };
