@@ -24,9 +24,9 @@ const userDetails = async username => {
   }
 };
 
-const userRepos = async username => {
+const userRepos = async (username, per_page = 10, page = 1) => {
   try {
-    const { status, data } = await api('GET', `/users/${username}/repos`);
+    const { status, data } = await api('GET', `/users/${username}/repos?per_page=${per_page}&page=${page}`);
 
     if (status !== 200)
       return { error: data.message, status };

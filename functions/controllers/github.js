@@ -33,12 +33,13 @@ const userDetails = async (req, res) => {
 
 const userRepos = async (req, res) => {
   const { username } = req.params;
+  const { per_page, page } = req.query;
 
   if (!username)
     return res.status(400).json({ msg: 'field "username" is required' });
 
   try {
-    const response = await githubApi.userRepos(username);
+    const response = await githubApi.userRepos(username, per_page, page);
 
     if (response.error)
       return res.status(response.status).json({ error: response.error });
